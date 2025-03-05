@@ -1,34 +1,14 @@
-name: DiffBlue Cover Integration
+name: Print Message on Push
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main  # 你可以根据需要指定分支，这里是示例为主分支
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # 指定运行环境
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Java
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
-        distribution: 'adopt'
-
-    - name: Install DiffBlue Cover
-      run: |
-        wget https://download.diffblue.com/cover-x.y.z-linux.tar.gz
-        tar -xzf cover-x.y.z-linux.tar.gz
-        ./cover-x.y.z-linux/bin/cover install
-
-    - name: Run DiffBlue Cover
-      run: |
-        ./cover-x.y.z-linux/bin/cover run
-
-    - name: Commit and push generated tests
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "Add generated tests by DiffBlue Cover"
-        git push
+    - name: Print a message
+      run: echo "Hello, World! This is a message printed by GitHub Actions on push."
