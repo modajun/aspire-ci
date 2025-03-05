@@ -13,7 +13,7 @@ public class UserController {
     public User test() {
         User user = new User();
         user.setUsername("test");
-        user.setMessage("Hello World!!!");
+        user.setMessage("Hello World!!!!");
         return user;
     }
 } 
