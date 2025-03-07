@@ -1,4 +1,4 @@
-package com.example.userservice.entity;
+package com.example.userservice.domain.entity;
 
 import lombok.Data;
 
