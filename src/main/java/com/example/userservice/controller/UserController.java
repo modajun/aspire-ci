@@ -2,7 +2,11 @@ package com.example.userservice.controller;
 
 import com.example.userservice.domain.entity.User;
 import com.example.userservice.domain.req.CalculationRequest;
+import com.example.userservice.domain.req.DateDifferenceRequest;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @RestController
 @RequestMapping("/api/test")
@@ -33,5 +37,13 @@ public class UserController {
             default:
                 throw new IllegalArgumentException("Unsupported operation. Supported operations are: add, subtract, multiply, divide");
         }
+    }
+
+    @PostMapping("/date-difference")
+    public long calculateDateDifference(@RequestBody DateDifferenceRequest request) {
+        LocalDate targetDate = LocalDate.parse(request.getTargetDate());
+        LocalDate currentDate = LocalDate.now();
+        
+        return Math.abs(ChronoUnit.DAYS.between(currentDate, targetDate));
     }
 } 
