@@ -15,6 +15,7 @@ public class DateService {
             DateTool tool = new DateTool();
             LocalDate targetDate = tool.parseDate(request.getTargetDate());
             LocalDate currentDate = tool.getCurrentDate();
+
             long dif = tool.getDaysDifference(currentDate, targetDate);
             return ResponseEntity.ok(dif);
         } catch (DateTimeParseException e) {

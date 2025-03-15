@@ -5,8 +5,8 @@ import java.time.temporal.ChronoUnit;
 
 public class DateTool {
     public long calculateDays(String targetDateStr) {
-        LocalDate targetDate = parseDate(targetDateStr);
-        LocalDate currentDate = getCurrentDate();
+        LocalDate targetDate=parseDate(targetDateStr);
+        LocalDate currentDate=getCurrentDate();
         return getDaysDifference(currentDate, targetDate);
     }
 
