@@ -3,6 +3,9 @@ package com.example.userservice.controller;
 import com.example.userservice.domain.entity.User;
 import com.example.userservice.domain.req.CalculationRequest;
 import com.example.userservice.domain.req.DateDifferenceRequest;
+import com.example.userservice.service.DateService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -12,12 +15,20 @@ import java.time.temporal.ChronoUnit;
 @RequestMapping("/api/test")
 public class UserController {
 
+    @Autowired
+    private DateService dateService;
+
     @GetMapping
     public User test() {
         User user = new User();
         user.setUsername("test");
         user.setMessage("Hello World!!!!");
         return user;
+    }
+
+    @PostMapping("/date-difference")
+    public ResponseEntity<Object> calculateDateDifference(@RequestBody DateDifferenceRequest request) {
+        return dateService.calculateDateDifference(request);
     }
 
     @PostMapping("/calculate")
@@ -39,11 +50,4 @@ public class UserController {
         }
     }
 
-    @PostMapping("/date-difference")
-    public long calculateDateDifference(@RequestBody DateDifferenceRequest request) {
-        LocalDate targetDate = LocalDate.parse(request.getTargetDate());
-        LocalDate currentDate = LocalDate.now();
-        
-        return Math.abs(ChronoUnit.DAYS.between(currentDate, targetDate));
-    }
 } 
