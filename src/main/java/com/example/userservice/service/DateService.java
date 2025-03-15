@@ -1,6 +1,6 @@
 package com.example.userservice.service;
 
-import com.example.userservice.domain.req.DateDifferenceRequest;
+import com.example.userservice.domain.req.DateDiffRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 @Service
 public class DateService {
 
-    public ResponseEntity<Object> calculateDateDifference(DateDifferenceRequest request) {
+    public ResponseEntity<Object> calculateDateDifference(DateDiffRequest request) {
         try {
             DateTool tool = new DateTool();
             LocalDate targetDate = tool.parseDate(request.getTargetDate());

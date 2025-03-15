@@ -2,14 +2,11 @@ package com.example.userservice.controller;
 
 import com.example.userservice.domain.entity.User;
 import com.example.userservice.domain.req.CalculationRequest;
-import com.example.userservice.domain.req.DateDifferenceRequest;
+import com.example.userservice.domain.req.DateDiffRequest;
 import com.example.userservice.service.DateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 @RestController
 @RequestMapping("/api/test")
@@ -27,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping("/date-difference")
-    public ResponseEntity<Object> calculateDateDifference(@RequestBody DateDifferenceRequest request) {
+    public ResponseEntity<Object> calDateDifference(@RequestBody DateDiffRequest request) {
         return dateService.calculateDateDifference(request);
     }
 
