@@ -6,6 +6,7 @@ import com.example.userservice.domain.req.DateDiffRequest;
 import com.example.userservice.service.DateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,8 +24,8 @@ public class UserController {
         return user;
     }
 
-    @PostMapping("/date-difference")
-    public ResponseEntity<Object> calDateDifference(@RequestBody DateDiffRequest request) {
+    @PostMapping("/omc/date-difference")
+    public ResponseEntity<Object> calDateDifference(@Validated @RequestBody DateDiffRequest request) {
         return dateService.calculateDateDifference(request);
     }
 
